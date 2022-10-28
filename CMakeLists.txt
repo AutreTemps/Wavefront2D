@@ -12,7 +12,13 @@ set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
 add_subdirectory(third-party)
 
-add_executable(${PROJECT_NAME} main.cpp)
+set(PROJECT_SOURCES
+    include/log.hpp
+
+    src/main.cpp
+)
+
+add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
 target_include_directories(${PROJECT_NAME} PRIVATE include)
 
 target_link_libraries(${PROJECT_NAME} glfw)

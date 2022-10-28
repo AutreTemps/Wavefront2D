@@ -1,9 +1,9 @@
-#include <iostream>
+#include <log.hpp>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-int main(void)
+int main(int argc, char* argv[])
 {
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
@@ -12,8 +12,6 @@ int main(void)
     if (!glfwInit()) {
         return -1;
     }
-
-    std::cout << GLVersion.major << ' ' << GLVersion.minor << '\n';
 
     window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
     if (!window)
@@ -25,9 +23,11 @@ int main(void)
     glfwMakeContextCurrent(window);
 
     if (!gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress))) {
-        std::cout << "Failed to initialize OpenGL context" << '\n';
+        Log::Error("Failed to initialize OpenGL context");
         return -1;
     }
+
+    Log::Info("OpenGL version {}.{}", GLVersion.major, GLVersion.minor);
 
     while (!glfwWindowShouldClose(window))
     {
