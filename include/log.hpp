@@ -39,8 +39,6 @@ public:
 private:
     static void Print(char const *fmt)
     {
-        StringVec sv;
-
         while (*fmt != '\0') {
             std::cout << *fmt;
             ++fmt;
